@@ -2,24 +2,104 @@
 <html>
     <head>
       <title>Justin's Personal Website</title>
+      <style>
+        body {
+            background: rgb(125, 198, 205);
+            color: rgb(45, 45, 45);
+            padding: 10px;
+            font-family: arial;
+        }
+        #all-contents {
+            max-width: 800px;
+            margin: auto;
+        }
+    
+        /* navigation menu */
+        nav {
+            background: rgb(230, 135, 182);
+            margin: 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        h1 {
+            display: flex;
+            align-items: center;
+            color: white;
+            flex: 1;
+            margin: 0;
+        }
+        #nav-ul {
+            list-style-image: none;
+        }
+        .nav-li {
+            display: inline-block;
+            padding: 0 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+    
+        /* main container area beneath menu */
+        main {
+            background: rgb(114, 160, 190);
+            display: flex;
+            border-radius: 5px;
+        }
+        .sidebar {
+            margin-right: 25px;
+            padding: 10px;
+        }
+        .sidebar-img {
+            width: 200px;
+            border: 1px solid white;
+        }
+        .content {
+            flex: 1;
+            padding: 15px;
+        }
+        #interests {
+            border: 4px silver ridge;
+            padding: 8px;
+        }
+        h2, h3 {
+            margin: 0px;
+        }
+    </style>
+    
     </head>
     <body>
         <!-- All content goes here -->
-        <div> 
+        <div id="all-contents"> 
             <nav>
-    
+              <h1>Justin's Personal Website</h1>
+              <ul id="nav-ul">
+                <li class="nav-li"><a href="index.html">Home</a></li>
+                <li class="nav-li"><a href="portfolio.html">Portfolio</a></li>
+              </ul>
             </nav>
     
             <main>
                 <!-- Sidebar section -->
-                <div>
-                  
+                <div class="sidebar">
+                  <img class="sidebar-img" src="https://lh3.googleusercontent.com/-sARSjq0KOfE/YL-gBvkejxE/AAAAAAAAAAs/OL9UimVT9ocx0JzcyBGE7X01FbgAcVfYQCEwYChgbKtQDABHVOhxMqJ8Sd23YjAzc6-KUptLKj4j1bucT26_SvOEmDz8ddtHSUa3IRqCLKMlHoUcCk925MmhrqjmupaCmctSLuSftYeSByQSWlgd2da4IT9MwgjjWj0CEb7N-ygUzFpKUEE3sXLvnY---BuErpYNTxz0Up_rKMgcB0Bur7mAuHt8K8b-EnsHjb6tcmGF6BTT8lhO9W5GW9Xbf9Bhy1f4XbI6SUqXBmBF2gkCU9mdm49DvHIQ3S-hoPTPQoPRxOaby7VGidnheEC7YO2-QaS1XG03z0RGhhFSXERyQrse8fMO4mz5ylitVzua_iqVQTd7lDchDgFmp6iHgvQVF52jJ7PHrZys9RLuiknOeVy5lxI5Bqwtl2cm8lfakMgKdtcxYJjPs15RIrHGL83a1X7JHzmj3qlyIc0WHE5kNnajxX-GBbnu0D9Gavlk6zs0hjQs5IjZQk7A27GI1bkpS-IF31h5TT9y5OarqloUi4p9S7AKIxBOM-NJ_Nt1SwJXpuk5s1rNeWumAJNpukMqDgtrqpKZ5GPyuxSmgsMz9laqLeMpMR2XrYJQbfBFNd4meM6M1A8yyrE8d3SZk6H1sVrnNMuC1IZvujGQwvES9Ur_ABebCMMDalocG/w326-h220-p/6971466700002594577">
                 </div>
             
                 <!-- Content section -->
-                <div>
+                <div class="content">
                   <h2>Justin</h2>
                   <p>Technology Success Coach at Next Level Nola</p>
+                  <!-- Interests section-->
+                  <div id="interests">
+                    <h3>Interests</h3>
+                    <ul>
+                      <li>Entreprenuership</li>
+                      <li>Health and Fitness</li>
+                      <li>Reading</li>
+                    </ul>
+                  </div>
                 </div>
             </main>
             
