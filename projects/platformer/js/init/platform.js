@@ -39,7 +39,7 @@
         // example:
         createPlatform(120, 600, .3)
         createPlatform(200, 502, .1, 4)
-        createPlatform(400, 502, .1, 4)
+        createPlatform(400, 535, .1, 3)
         createPlatform(600, 502, .5)
         createPlatform(362, 300, .3)
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
