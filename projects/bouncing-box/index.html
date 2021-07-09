@@ -8,7 +8,11 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			border-radius: 50%;
+			background-image: url(https://banner2.cleanpng.com/20180320/cpw/kisspng-tennis-balls-racket-clip-art-simple-tennis-ball-png-5ab1c8c4728a84.2814152215216007084692.jpg);
+			background-position: center;
+			background-size: 150px;
+			background-color: yellow;
 			font-size: 300%;
 			text-align: center;
 			display: block;
@@ -18,12 +22,30 @@
 		}
 		.board{
 			height: 100vh;
+			background-image: url(https://wallpaperaccess.com/full/1589399.jpg);
+			background-repeat: no-repeat;
+			background-position: center;
+			
+			
+
+		}
+		#player1 {
+			position: absolute;
+			top: 5%;
+			left: 25%;
+		}
+		#computer {
+			position: absolute;
+			top: 5%;
+			left: 60%;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
 </head>
 <body class="board">
+	<h1 id="player1">Player 1 Side</h1>
+	<h1 id="computer">Computer Side</h1>
 	<!-- HTML for the box -->
 	<div class="box">?</div>
 
@@ -41,14 +63,18 @@
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 
 			// Every 50 milliseconds, call the update Function (see below)
-			setInterval(update, 50);
+			var interval = setInterval(update, 50);
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
 
+			// Every time the board is clicked, add to missedClick variable
+			board.on('click', addMissedClick);
+
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css('top', newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -62,7 +88,12 @@
 			
 			// TODO 2 - Variable declarations 
 			var positionX = 0;
+			var positionY = 275;
 			var points = 0;
+			var speed = 10;
+			var boardHeight = jQuery(window).height();
+			var missedClick = 0;
+	
 
 			
 			/* 
@@ -71,10 +102,37 @@
 			turn it around! 
 			*/
 			function update() {
-				positionX += 10;
-				moveBoxTo(positionX);
+				positionX += speed;
+				
+				moveBoxTo(positionX, positionY);
+
+				if (positionX > boardWidth) {
+					speed *= -1;
+					positionY = Math.random() * boardHeight;
+				}
+
+				if (positionX < 0) {
+					speed = 20;
+				}
+
+				if (positionY > boardHeight) {
+					speed *= -1;
+					positionY = Math.random() * boardHeight;
+				}
+
+				if (missedClick === 10) {
+					endGame();
+					alert("You missed the Ball 10 times! Game Over!")
+				}
+
+
 
 			};
+
+			// Missed click function
+			function addMissedClick() {
+				missedClick++;
+			}
 
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
@@ -82,11 +140,24 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				positionX = 0;
+				positionX = boardWidth - 50;
+
+				
 				points += 1;
+		
 				changeBoxText(points);
 
+				if (speed > 0) {
+					speed += 35;
+				} else if (speed < 0) {
+					speed -= 3;
+				}
 
+
+			};
+
+			function endGame() {
+				clearInterval(interval);
 			};
 		})();
 	</script>
