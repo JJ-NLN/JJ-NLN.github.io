@@ -49,20 +49,14 @@ var init = function (window) {
         and check to see if it has drifted off the screen.         
         */
         function update() {
-            // TODO 4 : Update the circle's position //
-            for (var i = 0; i < 5; i++) {
-                physikz.updatePosition(circles[i]);
-            }
-            
-
-            
-            // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            for (var i = 0; i < 5; i++) {
-                game.checkCirclePosition(circles[i]);
-            }
-           
+            // TODO 4 and 5 are deleted because we are executing each loop in TODO 9
 
             // TODO 9 : Iterate over the array
+            for (var i = 0; i < circles.length; i++) {
+                var eachCircle = circles[i];
+                physikz.updatePosition(eachCircle);
+                game.checkCirclePosition(eachCircle);
+            }
            
             
         }
