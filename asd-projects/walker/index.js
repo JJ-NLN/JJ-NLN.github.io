@@ -125,6 +125,7 @@ function runProgram(){
     $("#walker").css("top", walker_1.positionY);
     $("#walker_2").css("left", walker_2.positionX);
     $("#walker_2").css("top", walker_2.positionY);
+    
   }
   
   function endGame() {
