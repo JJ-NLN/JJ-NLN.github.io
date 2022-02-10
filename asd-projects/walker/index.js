@@ -20,20 +20,28 @@ function runProgram(){
     "A": 65,
     "D": 68,
   }
+
+  // Board width, height
+  var BOARD_WIDTH = $("#board").width();
+
+  // Board Walls
+  var BOARD_WALL;
   
   // Game Item Objects
   var walker_1 = {
     positionX: 0,
     positionY: 0,
     speedX: 0,
-    speedY: 0
+    speedY: 0,
+    width: $("#walker").width()
   }
 
   var walker_2 = {
     positionX: 390,
     positionY: 390,
     speedX: 0,
-    speedY: 0
+    speedY: 0,
+    width: $("#walker_2").width()
   }
 
 
@@ -51,7 +59,8 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    repositionGameItem();
+    repositionGameItem(walker_1);
+    repositionGameItem(walker_2);
     redrawGameItem(); 
   }
   
@@ -80,11 +89,18 @@ function runProgram(){
     }
   }
 
-  function handleKeyUp() {
-    walker_1.speedX = 0;
-    walker_1.speedY = 0;
-    walker_2.speedX = 0;
-    walker_2.speedY = 0;
+  function handleKeyUp(event) {
+    if (event.which === KEY.LEFT || event.which === KEY.RIGHT) {
+      walker_1.speedX = 0;
+    } else if (event.which === KEY.UP || event.which === KEY.DOWN) {
+      walker_1.speedY = 0;
+    }
+
+    if (event.which === KEY.A || event.which === KEY.D) {
+      walker_2.speedX = 0;
+    } else if (event.which === KEY.W || event.which === KEY.S) {
+      walker_2.speedY = 0;
+    } 
   }
 
 
@@ -92,32 +108,43 @@ function runProgram(){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  function repositionGameItem() {
-    walker_1.positionX += walker_1.speedX;
-    if (walker_1.positionX >= 390) {
-      walker_1.positionX = 390;
-    } else if (walker_1.positionX <= 0) {
-      walker_1.positionX = 0;
-    }
-    walker_1.positionY += walker_1.speedY;
-    if (walker_1.positionY >= 390) {
-      walker_1.positionY = 390;
-    } else if (walker_1.positionY <= 0) {
-      walker_1.positionY = 0;
-    }
+  function repositionGameItem(walker) {
+    BOARD_WALL = BOARD_WIDTH - walker.width;
 
-    walker_2.positionX += walker_2.speedX;
-    if (walker_2.positionX >= 390) {
-      walker_2.positionX = 390;
-    } else if (walker_2.positionX <= 0) {
-      walker_2.positionX = 0;
-    }
-    walker_2.positionY += walker_2.speedY;
-    if (walker_2.positionY >= 390) {
-      walker_2.positionY = 390;
-    } else if (walker_2.positionY <= 0) {
-      walker_2.positionY = 0;
-    }
+    walker.positionX += walker.speedX;
+
+    walker.positionX = Math.min(walker.positionX, BOARD_WALL)
+    walker.positionX = Math.max(walker.positionX, 0);
+
+    // if (walker_1.positionX >= BOARD_WALL) {
+    //   walker_1.positionX = BOARD_WALL;
+    // } else if (walker_1.positionX <= 0) {
+    //   walker_1.positionX = 0;
+    // }
+
+    walker.positionY += walker.speedY;
+
+    walker.positionY = Math.min(walker.positionY, BOARD_WALL);
+    walker.positionY = Math.max(walker.positionY, 0);
+
+    // if (walker_1.positionY >= BOARD_WALL) {
+    //   walker_1.positionY = BOARD_WALL;
+    // } else if (walker_1.positionY <= 0) {
+    //   walker_1.positionY = 0;
+    // }
+
+    // walker_2.positionX += walker_2.speedX;
+    // if (walker_2.positionX >= BOARD_WALL) {
+    //   walker_2.positionX = BOARD_WALL;
+    // } else if (walker_2.positionX <= 0) {
+    //   walker_2.positionX = 0;
+    // }
+    // walker_2.positionY += walker_2.speedY;
+    // if (walker_2.positionY >= BOARD_WALL) {
+    //   walker_2.positionY = BOARD_WALL;
+    // } else if (walker_2.positionY <= 0) {
+    //   walker_2.positionY = 0;
+    // }
   }
 
   function redrawGameItem() {
